@@ -160,12 +160,11 @@ def forecastPetrol(months: int):
     y_pred_df.index = test.index
     y_pred_out = y_pred_df["Forecast"]
 
-    plt.plot(y_pred_out, color='green', label='SARIMA Forecast')
-    plt.plot(train, color="black", label='Training')
-    plt.plot(test, color="red", label='Testing')
-
-    plt.legend()
-    plt.savefig('assets/trainvsforecasted.png')
+    # plt.plot(y_pred_out, color='green', label='SARIMA Forecast')
+    # plt.plot(train, color="black", label='Training')
+    # plt.plot(test, color="red", label='Testing')
+    #
+    # plt.legend()
 
     x_true = []
     for i in test['Petrol']:
@@ -226,7 +225,7 @@ def forecastPetrol(months: int):
         for i in range(2):
             for j in range(2):
                 plt.text(j, i, str(s[i][j]) + " = " + str(cm[i][j]), fontsize=12)
-        plt.savefig('assets/confusion_matrix.png')
+        plt.savefig('assets/petrol_confusion_matrix.png')
 
     future_dates = [ts_log.index[-1] + DateOffset(months=x) for x in range(0, 60)]
 
@@ -239,6 +238,7 @@ def forecastPetrol(months: int):
 
     future_df['Forecast'] = SARIMAXmodel.predict(len(ts_log), len(ts_log) + months)
     plt.plot(future_df[['Petrol', 'Forecast']])
+    plt.savefig('assets/forecasted_petrol_graph.png')
 
     pred_log = future_df['Forecast']
     pred_out = np.exp(pred_log.dropna())

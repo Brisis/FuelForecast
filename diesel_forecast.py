@@ -225,7 +225,7 @@ def forecastDiesel(months: int):
         for i in range(2):
             for j in range(2):
                 plt.text(j, i, str(s[i][j]) + " = " + str(cm[i][j]), fontsize=12)
-        # plt.show()
+        plt.savefig('assets/diesel_confusion_matrix.png')
 
     # Define Forecasted Dates
 
@@ -238,6 +238,8 @@ def forecastDiesel(months: int):
     # future_df.tail()
 
     future_df['Forecast'] = SARIMAXmodel.predict(len(ts_log), len(ts_log) + months)
+    plt.plot(future_df[['Diesel', 'Forecast']])
+    plt.savefig('assets/forecasted_diesel_graph.png')
 
     # Precision,Accuracy,F1,recall
     print_results('Combined Arima & Sarima Model', x_true, x_pred)
