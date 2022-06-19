@@ -225,7 +225,7 @@ def forecastPetrol(months: int):
         for i in range(2):
             for j in range(2):
                 plt.text(j, i, str(s[i][j]) + " = " + str(cm[i][j]), fontsize=12)
-        plt.savefig('assets/petrol_confusion_matrix.png')
+        plt.savefig('assets/graphs/petrol_confusion_matrix.png')
 
     future_dates = [ts_log.index[-1] + DateOffset(months=x) for x in range(0, 60)]
 
@@ -238,7 +238,7 @@ def forecastPetrol(months: int):
 
     future_df['Forecast'] = SARIMAXmodel.predict(len(ts_log), len(ts_log) + months)
     plt.plot(future_df[['Petrol', 'Forecast']])
-    plt.savefig('assets/forecasted_petrol_graph.png')
+    plt.savefig('assets/graphs/forecasted_petrol_graph.png')
 
     pred_log = future_df['Forecast']
     pred_out = np.exp(pred_log.dropna())
@@ -254,5 +254,5 @@ def forecastPetrol(months: int):
     final_forecast = forecasted_data.round(0)
 
     # saving the dataframe
-    final_forecast.to_csv('assets/petrol_forecasted_data.csv')
+    final_forecast.to_csv('assets/forecasted/petrol_forecasted_data.csv')
 

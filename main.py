@@ -225,7 +225,7 @@ class App(customtkinter.CTk):
         if self.isPetrolMode:
             get_forecast.getForecast(int(search_value), "Petrol")
 
-            forecasted_results = pd.read_csv("assets/petrol_forecasted_data.csv")
+            forecasted_results = pd.read_csv("assets/forecasted/petrol_forecasted_data.csv")
             # forecasted_results.rename(columns={"": "Month", "Forecast": "Petrol Quantity Forecast"})
             forecasted_results.set_axis(["Month", "Petrol Quantity Forecast"], axis=1, inplace=True)
 
@@ -251,7 +251,7 @@ class App(customtkinter.CTk):
         else:
             get_forecast.getForecast(int(search_value), "Diesel")
 
-            forecasted_results = pd.read_csv("assets/diesel_forecasted_data.csv")
+            forecasted_results = pd.read_csv("assets/forecasted/diesel_forecasted_data.csv")
             # forecasted_results.rename(columns={"": "Month", "Forecast": "Petrol Quantity Forecast"})
             forecasted_results.set_axis(["Month", "Diesel Quantity Forecast"], axis=1, inplace=True)
 
@@ -276,7 +276,7 @@ class App(customtkinter.CTk):
 
     def getReport(self):
         print("Downloaded Report")
-        self.results.to_csv('assets/forecasted_data.csv')
+        self.results.to_csv('assets/forecasted/reports/forecast_report.csv')
 
 
 if __name__ == "__main__":
